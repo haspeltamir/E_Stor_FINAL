@@ -10,6 +10,8 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
   styleUrls: ['./shopping-cart-page.component.css'],
 })
 export class ShoppingCartPageComponent {
+  public maxAmountRange = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   cart!: shoppingCart;
   constructor(private shoppingCartService: ShoppingCartService) {
     this.shoppingCartService.getCartObservable().subscribe((cart) => {
