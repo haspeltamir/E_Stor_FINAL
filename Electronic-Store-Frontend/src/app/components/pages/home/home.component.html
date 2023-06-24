@@ -1,0 +1,38 @@
+<app-search></app-search>
+<app-tags></app-tags>
+<app-not-found
+[visible]="!devices || !devices.length"
+resetLinkText="Reset Search">
+</app-not-found>
+<ul>
+  <li *ngFor="let device of devices">
+    <a routerLink="/device/{{device.id}}">
+      <img [src]="device.imageUrl" [alt]="device.name" />
+      <div class="content">
+        <div class="name">
+          {{device.name}}
+        </div>
+        <span class="favorite {{device.favorite?'':'not'}}">
+          ❤
+        </span>
+        <div class="stars">
+          <!-- <star-rating [stars]="device.stars" /> -->
+        </div>
+        <div class="product-item-footer">
+          <div class="origins">
+            <span *ngFor="let origin of device.origins">
+              {{origin}}
+            </span>
+          </div>
+
+        </div>
+
+        <div class="price">
+          <span>
+            {{device.price | currency}}
+          </span>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>

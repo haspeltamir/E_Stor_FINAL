@@ -1,0 +1,41 @@
+<app-not-found
+  [visible]="!device"
+  notFoundMessage="Device Not Found"
+  resetLinkText="Back To Homepage"
+>
+</app-not-found>
+<div *ngIf="device" class="container">
+  <img [src]="device.imageUrl" [alt]="device.name" />
+
+  <div class="details">
+    <div class="header">
+      <span class="name">
+        {{ device.name }}
+      </span>
+      <span class="favorite {{ device.favorite ? '' : 'not' }}">❤</span>
+    </div>
+    <div class="rating">
+      <!-- <star-rating [stars]="device.stars" [size]="1.8" /> -->
+    </div>
+
+    <div class="origins">
+      <span *ngFor="let origin of device.origins">
+        {{ origin }}
+      </span>
+    </div>
+
+    <div class="tags">
+      <a *ngFor="let tag of device.tags" routerLink="/tag/{{ tag }}">
+        {{ tag }}
+      </a>
+    </div>
+
+    <div class="price">
+      <span>
+        {{ device.price | currency }}
+      </span>
+    </div>
+
+    <button (click)="addToCart()">Add To Cart</button>
+  </div>
+</div>
