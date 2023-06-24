@@ -5,11 +5,13 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-tags',
   templateUrl: './tags.component.html',
-  styleUrls: ['./tags.component.css']
+  styleUrls: ['./tags.component.css'],
 })
 export class TagsComponent {
-  tags?:Tag[];
-  constructor(devicesService:DevicesService){
-    this.tags = devicesService.getAllTags();
+  tags?: Tag[];
+  constructor(devicesService: DevicesService) {
+    devicesService.getAllTags().subscribe((tagServer) => {
+      this.tags = tagServer;
+    });
   }
 }

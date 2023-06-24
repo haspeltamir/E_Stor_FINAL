@@ -3,6 +3,7 @@ import { DevicesService } from '../../../services/devices.service';
 import { devices } from 'src/app/models/devices';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,15 +16,24 @@ export class HomeComponent {
     private devicesService: DevicesService,
     activatedRoute: ActivatedRoute
   ) {
+    let devicesObservable: Observable<devices[]>;
     activatedRoute.params.subscribe((params) => {
       if (params.searchName)
-        this.devices = this.devicesService.getAllDevicesBySearchName(
+        devicesObservable = this.devicesService.getAllDevicesBySearchName(
           params.searchName
         );
       else if (params.deviceTag)
-        this.devices = this.devicesService.getAllDevicesByTag(params.deviceTag);
-      else this.devices = this.devicesService.getAll();
+        devicesObservable = this.devicesService.getAllDevicesByTag(
+          params.deviceTag
+        );
+      else {
+        devicesObservable = this.devicesService.getAll();
+      }
+      devicesObservable.subscribe((serverDevices) => {
+        this.devices = serverDevices;
+      });
     });
-    this.devices = devicesService.getAll();
+
+    // this.devices = devicesService.getAll();
   }
 }

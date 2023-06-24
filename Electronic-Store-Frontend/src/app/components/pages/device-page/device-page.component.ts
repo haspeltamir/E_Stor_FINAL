@@ -8,19 +8,25 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 @Component({
   selector: 'app-device-page',
   templateUrl: './device-page.component.html',
-  styleUrls: ['./device-page.component.css']
+  styleUrls: ['./device-page.component.css'],
 })
 export class DevicePageComponent {
-  device!:devices;
-  constructor(activatedRoute:ActivatedRoute,devicesService:DevicesService
-    ,private cartService:ShoppingCartService,private router:Router){
-    activatedRoute.params.subscribe((params)=>{
-      if(params.id)
-        this.device=devicesService.getDevicesByID(params.id);
-    })
+  device!: devices;
+  constructor(
+    activatedRoute: ActivatedRoute,
+    devicesService: DevicesService,
+    private cartService: ShoppingCartService,
+    private router: Router
+  ) {
+    activatedRoute.params.subscribe((params) => {
+      if (params.id)
+        devicesService.getDevicesByID(params.id).subscribe((deviceServer) => {
+          this.device = deviceServer;
+        });
+    });
   }
 
-  addToCart(){
+  addToCart() {
     this.cartService.addToCart(this.device);
     this.router.navigateByUrl('/shoppingCart-page');
   }
