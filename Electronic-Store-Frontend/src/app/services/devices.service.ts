@@ -4,38 +4,39 @@ import { devicesList, tagList } from 'src/data';
 import { Tag } from '../models/tag';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DevicesService {
+  constructor() {}
 
-  constructor() { }
-
-  getAll():devices[]{
+  getAll(): devices[] {
     return devicesList;
   }
-  getAllDevicesBySearchName(deviceName: string):devices[] {
-    return this.getAll()
-  .filter(device => device.name.toLocaleLowerCase().includes(deviceName.toLocaleLowerCase()));
+  getAllDevicesBySearchName(deviceName: string): devices[] {
+    return this.getAll().filter((device) =>
+      device.name.toLocaleLowerCase().includes(deviceName.toLocaleLowerCase())
+    );
   }
-  getDevicesByID(deviceID: string):devices {
-    const foundDevice = this.getAll().find(device => device.id === deviceID);
+  getDevicesByID(deviceID: string): devices {
+    const foundDevice = this.getAll().find((device) => device.id === deviceID);
     if (foundDevice) {
       return foundDevice;
-    } 
-    else {
+    } else {
       return new devices();
     }
   }
 
-  getAllTags():Tag[]{
+  getAllTags(): Tag[] {
     return tagList;
   }
 
-  getAllDevicesByTag(deviceTag:string):devices[]{
-    if (deviceTag == 'All')
+  getAllDevicesByTag(deviceTag: string): devices[] {
+    if (deviceTag == 'All') {
       return this.getAll();
-    return this.getAll()
-  .filter(device => device.tags?.includes(deviceTag));
+    }
+    return this.getAll().filter((device) => {
+      device.tags?.includes(deviceTag);
+      console.log(device.tags + 'lol' + deviceTag);
+    });
   }
-  
 }

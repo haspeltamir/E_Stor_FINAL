@@ -6,24 +6,29 @@ import { ShoppingCartPageComponent } from './components/pages/shopping-cart-page
 
 const routes: Routes = [
   {
-    path:'',component:HomeComponent
+    path: '',
+    component: HomeComponent,
   },
   {
-  path:'search/:searchName',component:HomeComponent
+    path: 'search/:searchName',
+    component: HomeComponent,
   },
   {
-    path:'device/:id',component:DevicePageComponent
+    path: 'device/:id',
+    component: DevicePageComponent,
   },
   {
-    path:'tag/:tag',component:HomeComponent
+    path: 'tag/:tag',
+    component: HomeComponent,
   },
   {
-    path:'shoppingCart-page',component:ShoppingCartPageComponent
-  }
+    path: 'shoppingCart-page',
+    component: ShoppingCartPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
