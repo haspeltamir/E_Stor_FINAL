@@ -1,5 +1,5 @@
-import { tagList } from './../../../../data';
-import { DevicesService } from './../../../services/devices.service';
+import { tagList } from '../../../../data';
+import { DevicesService } from '../../../services/devices.service';
 import { devices } from 'src/app/models/devices';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
