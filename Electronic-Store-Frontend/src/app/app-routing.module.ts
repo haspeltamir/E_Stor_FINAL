@@ -18,7 +18,7 @@ const routes: Routes = [
     component: DevicePageComponent,
   },
   {
-    path: 'tag/:tag',
+    path: 'tag/:deviceTag',
     component: HomeComponent,
   },
   {

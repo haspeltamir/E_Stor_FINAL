@@ -31,12 +31,8 @@ export class DevicesService {
   }
 
   getAllDevicesByTag(deviceTag: string): devices[] {
-    if (deviceTag == 'All') {
-      return this.getAll();
-    }
-    return this.getAll().filter((device) => {
-      device.tags?.includes(deviceTag);
-      console.log(device.tags + 'lol' + deviceTag);
-    });
+    return deviceTag == 'All'
+      ? this.getAll()
+      : this.getAll().filter((device) => device.tags?.includes(deviceTag));
   }
 }

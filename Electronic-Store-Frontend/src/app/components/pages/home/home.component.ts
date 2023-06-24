@@ -20,8 +20,8 @@ export class HomeComponent {
         this.devices = this.devicesService.getAllDevicesBySearchName(
           params.searchName
         );
-      else if (params.tag)
-        this.devices = this.devicesService.getAllDevicesByTag(params.tag);
+      else if (params.deviceTag)
+        this.devices = this.devicesService.getAllDevicesByTag(params.deviceTag);
       else this.devices = this.devicesService.getAll();
     });
     this.devices = devicesService.getAll();
