@@ -1,8 +1,9 @@
 import { Router } from "express";
 import { devicesList, tagList } from "../data";
-const deviceRouter = Router();
 import asyncHandler from "express-async-handler";
 import { DeviceModel } from "../models/device.model";
+
+const deviceRouter = Router();
 
 deviceRouter.get(
   "/seed",
@@ -21,23 +22,9 @@ deviceRouter.get(
   "/",
   asyncHandler(async (request, response) => {
     const devices = await DeviceModel.find();
-    response.send(devicesList);
+    response.send(devices);
   })
 );
-
-// deviceRouter.get("/", async (request, response) => {
-//   const devices = await DeviceModel.find();
-//   response.send(devicesList);
-// });
-
-//Search BY Name
-// deviceRouter.get("/search/:searchName", (request, response) => {
-//   const searchName = request.params.searchName;
-//   const devices = devicesList.filter((deviceName) =>
-//     deviceName.name.toLocaleLowerCase().includes(searchName.toLocaleLowerCase())
-//   );
-//   response.send(devices);
-// });
 
 deviceRouter.get(
   "/search/:searchName",
@@ -47,11 +34,6 @@ deviceRouter.get(
     response.send(devices);
   })
 );
-
-//Get All tags
-// deviceRouter.get("/tags", (request, response) => {
-//   response.send(tagList);
-// });
 
 deviceRouter.get(
   "/tags",
@@ -86,19 +68,27 @@ deviceRouter.get(
 );
 
 //Get Devices by tags
-deviceRouter.get("/tag/:tagName", (request, response) => {
-  const deviceTag = request.params.tagName;
-  const devices = devicesList.filter((device) =>
-    device.tags?.includes(deviceTag)
-  );
-  response.send(devices);
-});
+deviceRouter.get(
+  "/tag/:tagName",
+  asyncHandler(async (request, response) => {
+    const devices = await DeviceModel.find({ tags: request.params.tagName });
+    response.send(devices);
+  })
+);
 
 //Get Devices by ID
-deviceRouter.get("/:deviceID", (request, response) => {
-  const deviceID = request.params.deviceID;
-  const device = devicesList.find((device) => device.id === deviceID);
-  response.send(device);
-});
+// deviceRouter.get("/:deviceID", (request, response) => {
+//   const deviceID = request.params.deviceID;
+//   const device = devicesList.find((device) => device.id === deviceID);
+//   response.send(device);
+// });
+
+deviceRouter.get(
+  "/:deviceID",
+  asyncHandler(async (request, response) => {
+    const device = await DeviceModel.findById(request.params.deviceID);
+    response.send(device);
+  })
+);
 
 export default deviceRouter;
