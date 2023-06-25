@@ -13,10 +13,11 @@ app.use(
   })
 );
 
-app.get("/api/services", (request, response) => {
+app.get("/api/devices", (request, response) => {
   response.send(devicesList);
 });
 
+//Search BY Name
 app.get("/api/devices/search/:searchName", (request, response) => {
   const searchName = request.params.searchName;
   const devices = devicesList.filter((deviceName) =>
@@ -25,18 +26,21 @@ app.get("/api/devices/search/:searchName", (request, response) => {
   response.send(devices);
 });
 
-app.get("/api/devices/tag", (request, response) => {
+//Get All tags
+app.get("/api/devices/tags", (request, response) => {
   response.send(tagList);
 });
 
+//Get Devices by tags
 app.get("/api/devices/tag/:tagName", (request, response) => {
   const deviceTag = request.params.tagName;
   const devices = devicesList.filter((device) =>
     device.tags?.includes(deviceTag)
   );
-  response.send(tagList);
+  response.send(devices);
 });
 
+//Get Devices by ID
 app.get("/api/devices/:deviceID", (request, response) => {
   const deviceID = request.params.deviceID;
   const device = devicesList.find((device) => device.id === deviceID);

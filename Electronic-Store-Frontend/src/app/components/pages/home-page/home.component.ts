@@ -27,13 +27,13 @@ export class HomeComponent {
           params.deviceTag
         );
       else {
-        devicesObservable = this.devicesService.getAll();
+        devicesObservable = devicesService.getAll();
       }
       devicesObservable.subscribe((serverDevices) => {
         this.devices = serverDevices;
       });
     });
 
-    // this.devices = devicesService.getAll();
+    // devicesObservable = devicesService.getAll();
   }
 }

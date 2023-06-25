@@ -14,6 +14,8 @@ import { TagsComponent } from './components/home/tags/tags.component';
 import { ShoppingCartPageComponent } from './components/pages/shopping-cart-page/shopping-cart-page.component';
 import { TitleComponent } from './components/home/title/title.component';
 import { NotFoundComponent } from './components/home/not-found/not-found.component';
+import { LoginPageComponent } from './components/pages/login-page/login-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 // import { RatingModule } from 'ng-starrating';
 
 @NgModule({
@@ -27,6 +29,7 @@ import { NotFoundComponent } from './components/home/not-found/not-found.compone
     ShoppingCartPageComponent,
     TitleComponent,
     NotFoundComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { NotFoundComponent } from './components/home/not-found/not-found.compone
     BrowserAnimationsModule,
     MatSlideToggleModule,
     HttpClientModule,
+    ReactiveFormsModule,
     // RatingModule,
   ],
   providers: [],

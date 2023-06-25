@@ -25,9 +25,6 @@ export class DevicesService {
   getAllDevicesBySearchName(deviceName: string) {
     return this.http.get<devices[]>(DEVICES_BY_SEARCH_URL + deviceName);
   }
-  getDevicesByID(deviceID: string): Observable<devices> {
-    return this.http.get<devices>(DEVICES_BY_ID_URL + deviceID);
-  }
 
   getAllTags(): Observable<Tag[]> {
     return this.http.get<Tag[]>(DEVICES_TAGS_URL);
@@ -38,5 +35,8 @@ export class DevicesService {
       ? this.getAll()
       : this.http.get<devices[]>(DEVICES_BY_TAG_URL + deviceTag);
   }
+
+  getDevicesByID(deviceID: string): Observable<devices> {
+    return this.http.get<devices>(DEVICES_BY_ID_URL + deviceID);
+  }
 }
-//.filter((device) => device.tags?.includes(deviceTag));

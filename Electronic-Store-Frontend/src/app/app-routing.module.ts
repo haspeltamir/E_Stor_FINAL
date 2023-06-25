@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/pages/home-page/home.component';
 import { DevicePageComponent } from './components/pages/device-page/device-page.component';
 import { ShoppingCartPageComponent } from './components/pages/shopping-cart-page/shopping-cart-page.component';
+import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 
 const routes: Routes = [
   {
@@ -22,8 +23,12 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'shoppingCart-page',
+    path: 'shoppingCart',
     component: ShoppingCartPageComponent,
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent,
   },
 ];
 
