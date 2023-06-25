@@ -1,8 +1,23 @@
 import { Router } from "express";
 import { usersList } from "../data";
 import jwt from "jsonwebtoken";
+import asynceHandler from "express-async-handler";
+import { UserModel } from "../models/user.model";
 
 const userRouter = Router();
+
+userRouter.get(
+  "/seed",
+  asynceHandler(async (request, response) => {
+    const userCount = await UserModel.countDocuments();
+    if (userCount > 0) {
+      response.send("seed is already done!");
+      return;
+    }
+    await UserModel.create(usersList);
+    response.send("Seed is done");
+  })
+);
 
 userRouter.post("/login", (request, response) => {
   const body = request.body;

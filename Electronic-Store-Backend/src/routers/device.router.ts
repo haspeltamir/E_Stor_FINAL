@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { devicesList, tagList } from "../data";
 const deviceRouter = Router();
-import asynceHandler from "express-async-handler";
+import asyncHandler from "express-async-handler";
 import { DeviceModel } from "../models/device.model";
 
 deviceRouter.get(
   "/seed",
-  asynceHandler(async (request, response) => {
+  asyncHandler(async (request, response) => {
     const deviceCount = await DeviceModel.countDocuments();
     if (deviceCount > 0) {
       response.send("seed is already done!");
@@ -17,23 +17,73 @@ deviceRouter.get(
   })
 );
 
-deviceRouter.get("/", (request, response) => {
-  response.send(devicesList);
-});
+deviceRouter.get(
+  "/",
+  asyncHandler(async (request, response) => {
+    const devices = await DeviceModel.find();
+    response.send(devicesList);
+  })
+);
+
+// deviceRouter.get("/", async (request, response) => {
+//   const devices = await DeviceModel.find();
+//   response.send(devicesList);
+// });
 
 //Search BY Name
-deviceRouter.get("/search/:searchName", (request, response) => {
-  const searchName = request.params.searchName;
-  const devices = devicesList.filter((deviceName) =>
-    deviceName.name.toLocaleLowerCase().includes(searchName.toLocaleLowerCase())
-  );
-  response.send(devices);
-});
+// deviceRouter.get("/search/:searchName", (request, response) => {
+//   const searchName = request.params.searchName;
+//   const devices = devicesList.filter((deviceName) =>
+//     deviceName.name.toLocaleLowerCase().includes(searchName.toLocaleLowerCase())
+//   );
+//   response.send(devices);
+// });
+
+deviceRouter.get(
+  "/search/:searchName",
+  asyncHandler(async (request, response) => {
+    const searchRegex = new RegExp(request.params.searchName, "i");
+    const devices = await DeviceModel.find({ name: { $regex: searchRegex } });
+    response.send(devices);
+  })
+);
 
 //Get All tags
-deviceRouter.get("/tags", (request, response) => {
-  response.send(tagList);
-});
+// deviceRouter.get("/tags", (request, response) => {
+//   response.send(tagList);
+// });
+
+deviceRouter.get(
+  "/tags",
+  asyncHandler(async (request, response) => {
+    const tags = await DeviceModel.aggregate([
+      {
+        $unwind: "$tags",
+      },
+      {
+        $group: {
+          _id: "$tags",
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          name: "$_id",
+          count: "$count",
+        },
+      },
+    ]).sort({ count: -1 }); //-1 decending order
+
+    const all = {
+      name: "All",
+      count: await DeviceModel.countDocuments(),
+    };
+
+    tags.unshift(all);
+    response.send(tags);
+  })
+);
 
 //Get Devices by tags
 deviceRouter.get("/tag/:tagName", (request, response) => {
