@@ -3,23 +3,23 @@
     <app-title title="Login"></app-title>
 
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
-      <text-input
-        [control]="fi.email"
+      <app-text-input
+        [control]="formControl.email"
         [showErrorsWhen]="isSubmitted"
         type="email"
         label="Email"
       >
-      </text-input>
+      </app-text-input>
 
-      <text-input
+      <app-text-input
         [control]="formControl.password"
         [showErrorsWhen]="isSubmitted"
         type="password"
         label="Password"
       >
-      </text-input>
+      </app-text-input>
 
-      <default-button text="Login"></default-button>
+      <app-default-button text="Login"></app-default-button>
       <div class="register">
         New user? &nbsp;
         <a routerLink="/register" [queryParams]="{ returnUrl: returnUrl }">

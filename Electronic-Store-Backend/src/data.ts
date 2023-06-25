@@ -89,7 +89,7 @@ export const tagList: any[] = [
 
 export const usersList: any[] = [
   {
-    name: "tamir haspel",
+    name: "tamir",
     email: "tamir@gmail.com",
     password: "12345",
     address: "Toronto On",

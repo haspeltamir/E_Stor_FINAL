@@ -19,6 +19,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 // import { RatingModule } from 'ng-starrating';
 import { ToastrModule } from 'ngx-toastr';
 import { timeout } from 'rxjs';
+import { InputContainerComponent } from './components/login/input-container/input-container.component';
+import { InputValidationComponent } from './components/login/input-validation/input-validation.component';
+import { TextInputComponent } from './components/login/text-input/text-input.component';
+import { DefaultButtonComponent } from './components/login/default-button/default-button.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { timeout } from 'rxjs';
     TitleComponent,
     NotFoundComponent,
     LoginPageComponent,
+    InputContainerComponent,
+    InputValidationComponent,
+    TextInputComponent,
+    DefaultButtonComponent,
   ],
   imports: [
     BrowserModule,

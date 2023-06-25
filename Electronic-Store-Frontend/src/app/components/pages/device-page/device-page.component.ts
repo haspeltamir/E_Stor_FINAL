@@ -28,6 +28,6 @@ export class DevicePageComponent {
 
   addToCart() {
     this.cartService.addToCart(this.device);
-    this.router.navigateByUrl('/shoppingCart-page');
+    this.router.navigateByUrl('/shoppingCart');
   }
 }
