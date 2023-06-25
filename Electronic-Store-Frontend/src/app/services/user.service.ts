@@ -47,4 +47,10 @@ export class UserService {
     }
     return new User();
   }
+
+  logOut() {
+    this.userSubject.next(new User());
+    localStorage.removeItem(USER_KEY);
+    window.location.reload();
+  }
 }
