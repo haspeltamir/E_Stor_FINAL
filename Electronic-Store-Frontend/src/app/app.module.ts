@@ -17,6 +17,8 @@ import { NotFoundComponent } from './components/home/not-found/not-found.compone
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { RatingModule } from 'ng-starrating';
+import { ToastrModule } from 'ngx-toastr';
+import { timeout } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSlideToggleModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      newestOnTop: false,
+    }),
     // RatingModule,
   ],
   providers: [],

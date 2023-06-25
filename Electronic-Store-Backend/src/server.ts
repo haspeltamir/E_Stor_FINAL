@@ -1,8 +1,8 @@
 import express, { request, response } from "express";
 import cors from "cors";
-import { devicesList, tagList } from "./data";
+import { devicesList, tagList, usersList } from "./data";
+import jwt from "jsonwebtoken";
 const port = 3000;
-
 const app = express();
 
 app.use(express.json());
@@ -46,31 +46,30 @@ app.get("/api/devices/:deviceID", (request, response) => {
   const device = devicesList.find((device) => device.id === deviceID);
   response.send(device);
 });
-/*
-  getAllDevicesBySearchName(deviceName: string): devices[] {
-    return this.getAll().filter((device) =>
-      device.name.toLocaleLowerCase().includes(deviceName.toLocaleLowerCase())
-    );
-  }
-  getDevicesByID(deviceID: string): devices {
-    const foundDevice = this.getAll().find((device) => device.id === deviceID);
-    if (foundDevice) {
-      return foundDevice;
-    } else {
-      return new devices();
-    }
-  }
 
-  getAllTags(): Tag[] {
-    return tagList;
-  }
+app.post("/api/users/login", (request, response) => {
+  const body = request.body;
+  // const { email, password } = request.body;
+  const user = usersList.find(
+    (user) => user.email === body.email && user.password === body.password
+  );
 
-  getAllDevicesByTag(deviceTag: string): devices[] {
-    return deviceTag == 'All'
-      ? this.getAll()
-      : this.getAll().filter((device) => device.tags?.includes(deviceTag));
+  if (user) {
+    response.send(generateTokenResponse(user));
+  } else {
+    response.status(400).send("user name or password ");
   }
-*/
+});
+
+const generateTokenResponse = (user: any) => {
+  const token = jwt.sign(
+    { email: user.email, isAdmin: user.isAdmin },
+    "password",
+    { expiresIn: "7d" }
+  );
+  user.token = token;
+  return user;
+};
 
 app.listen(port, function () {
   console.log(`Example app listening on port ${port}`);

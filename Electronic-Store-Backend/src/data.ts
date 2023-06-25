@@ -86,3 +86,20 @@ export const tagList: any[] = [
   { name: "iPhone", count: 4 },
   { name: "iPad", count: 4 },
 ];
+
+export const usersList: any[] = [
+  {
+    name: "tamir haspel",
+    email: "tamir@gmail.com",
+    password: "12345",
+    address: "Toronto On",
+    isAdmin: true,
+  },
+  {
+    name: "alaa",
+    email: "alaa@gmail.com",
+    password: "12345",
+    address: "beth-jan",
+    isAdmin: false,
+  },
+];
