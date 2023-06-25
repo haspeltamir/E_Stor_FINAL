@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { usersList } from "../data";
 import jwt from "jsonwebtoken";
-import asynceHandler from "express-async-handler";
+import asyncHandler from "express-async-handler";
 import { UserModel } from "../models/user.model";
 
 const userRouter = Router();
 
 userRouter.get(
   "/seed",
-  asynceHandler(async (request, response) => {
+  asyncHandler(async (request, response) => {
     const userCount = await UserModel.countDocuments();
     if (userCount > 0) {
       response.send("seed is already done!");
@@ -19,19 +19,20 @@ userRouter.get(
   })
 );
 
-userRouter.post("/login", (request, response) => {
-  const body = request.body;
-  // const { email, password } = request.body;
-  const user = usersList.find(
-    (user) => user.email === body.email && user.password === body.password
-  );
+userRouter.post(
+  "/login",
+  asyncHandler(async (request, response) => {
+    // const body = request.body;
+    const { email, password } = request.body;
+    const user = await UserModel.findOne({ email });
 
-  if (user) {
-    response.send(generateTokenResponse(user));
-  } else {
-    response.status(400).send("user name or password is invalid");
-  }
-});
+    if (user) {
+      response.send(generateTokenResponse(user));
+    } else {
+      response.status(400).send("user name or password is invalid");
+    }
+  })
+);
 
 const generateTokenResponse = (user: any) => {
   const token = jwt.sign(
