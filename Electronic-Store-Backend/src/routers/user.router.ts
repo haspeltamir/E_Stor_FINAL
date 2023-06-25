@@ -24,7 +24,7 @@ userRouter.post(
   asyncHandler(async (request, response) => {
     // const body = request.body;
     const { email, password } = request.body;
-    const user = await UserModel.findOne({ email });
+    const user = await UserModel.findOne({ email, password });
 
     if (user) {
       response.send(generateTokenResponse(user));
