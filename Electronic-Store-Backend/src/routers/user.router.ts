@@ -3,14 +3,14 @@ import { usersList } from "../data";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import { UserModel } from "../models/user.model";
+import bcrypt from "bcryptjs";
+const router = Router();
 
-const userRouter = Router();
-
-userRouter.get(
+router.get(
   "/seed",
   asyncHandler(async (request, response) => {
-    const userCount = await UserModel.countDocuments();
-    if (userCount > 0) {
+    const usersCount = await UserModel.countDocuments();
+    if (usersCount > 0) {
       response.send("seed is already done!");
       return;
     }
@@ -19,14 +19,16 @@ userRouter.get(
   })
 );
 
-userRouter.post(
+router.post(
   "/login",
   asyncHandler(async (request, response) => {
     // const body = request.body;
-    const { email, password } = request.body;
+    const email = request.body.email;
+    const password = request.body.password;
     const user = await UserModel.findOne({ email, password });
 
     if (user) {
+      // if (user && (await bcrypt.compare(password, user.password))) {
       response.send(generateTokenResponse(user));
     } else {
       response.status(400).send("user name or password is invalid");
@@ -43,4 +45,4 @@ const generateTokenResponse = (user: any) => {
   user.token = token;
   return user;
 };
-export default userRouter;
+export default router;

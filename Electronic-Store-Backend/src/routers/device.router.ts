@@ -3,9 +3,9 @@ import { devicesList, tagList } from "../data";
 import asyncHandler from "express-async-handler";
 import { DeviceModel } from "../models/device.model";
 
-const deviceRouter = Router();
+const router = Router();
 
-deviceRouter.get(
+router.get(
   "/seed",
   asyncHandler(async (request, response) => {
     const deviceCount = await DeviceModel.countDocuments();
@@ -18,7 +18,7 @@ deviceRouter.get(
   })
 );
 
-deviceRouter.get(
+router.get(
   "/",
   asyncHandler(async (request, response) => {
     const devices = await DeviceModel.find();
@@ -26,7 +26,7 @@ deviceRouter.get(
   })
 );
 
-deviceRouter.get(
+router.get(
   "/search/:searchName",
   asyncHandler(async (request, response) => {
     const searchRegex = new RegExp(request.params.searchName, "i");
@@ -35,7 +35,7 @@ deviceRouter.get(
   })
 );
 
-deviceRouter.get(
+router.get(
   "/tags",
   asyncHandler(async (request, response) => {
     const tags = await DeviceModel.aggregate([
@@ -68,7 +68,7 @@ deviceRouter.get(
 );
 
 //Get Devices by tags
-deviceRouter.get(
+router.get(
   "/tag/:tagName",
   asyncHandler(async (request, response) => {
     const devices = await DeviceModel.find({ tags: request.params.tagName });
@@ -83,7 +83,7 @@ deviceRouter.get(
 //   response.send(device);
 // });
 
-deviceRouter.get(
+router.get(
   "/:deviceID",
   asyncHandler(async (request, response) => {
     const device = await DeviceModel.findById(request.params.deviceID);
@@ -91,4 +91,4 @@ deviceRouter.get(
   })
 );
 
-export default deviceRouter;
+export default router;
