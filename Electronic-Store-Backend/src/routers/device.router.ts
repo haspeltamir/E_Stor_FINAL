@@ -91,12 +91,4 @@ router.get(
   })
 );
 
-// router.get(
-//   "/:deviceID",
-//   asyncHandler(async (request, response) => {
-//     const device = await DeviceModel.find({ id: request.params.deviceID });
-//     response.send(device);
-//   })
-// );
-
 export default router;
