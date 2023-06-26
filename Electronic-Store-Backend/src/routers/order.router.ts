@@ -29,6 +29,12 @@ router.post(
   })
 );
 
+router.get('/newOrderForCurrentUser', asyncHandler( async (req:any,res ) => {
+  const order= await OrderModel.findOne({user: req.user.id, status: OrderStatus.NEW});
+  if(order) res.send(order);
+  else res.status(HTTP_BAD_REQUEST).send();
+}))
+
 router.get(
   "/track/:id",
   asyncHandler(async (req, res) => {

@@ -30,6 +30,7 @@ import { CheckoutPageComponent } from './components/pages/checkout-page/checkout
 import { OrderItemListComponent } from './components/home/order-item-list/order-item-list.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
+import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { OrderTrackPageComponent } from './components/pages/order-track-page/ord
     CheckoutPageComponent,
     OrderItemListComponent,
     OrderTrackPageComponent,
+    PaymentPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ORDER_CREATE_URL, ORDER_TRACK_URL } from '../constants/url';
+import { ORDER_CREATE_URL, ORDER_NEW_FOR_CURRENT_USER_URL, ORDER_TRACK_URL } from '../constants/url';
 import { HttpClient } from '@angular/common/http';
 import { Order } from '../models/order';
 import { Observable } from 'rxjs';
@@ -12,6 +12,10 @@ export class OrderService {
 
   create(order: Order) {
     return this.http.post<Order>(ORDER_CREATE_URL, order);
+  }
+
+  getNewOrderForCurrentUser():Observable<Order>{
+    return this.http.get<Order>(ORDER_NEW_FOR_CURRENT_USER_URL);
   }
 
   trackOrderById(id: number): Observable<Order> {
