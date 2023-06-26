@@ -7,6 +7,7 @@ import cors from "cors";
 import deviceRouter from "./routers/device.router";
 import userRouter from "./routers/user.router";
 import { dbConnect } from "./configs/database.config";
+import orderRouter from "./routers/order.router";
 dbConnect();
 const port = 3000;
 const app = express();
@@ -24,6 +25,9 @@ app.use("/api/devices", deviceRouter);
 
 //users middleware
 app.use("/api/users", userRouter);
+
+//orders middleware
+app.use("/api/orders", orderRouter);
 
 app.listen(port, function () {
   console.log(`Example app listening on port ${port}`);

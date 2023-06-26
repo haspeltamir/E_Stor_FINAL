@@ -1,4 +1,4 @@
-import { Router, request, response } from "express";
+import { Router } from "express";
 import { usersList } from "../data";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
@@ -72,6 +72,19 @@ const generateTokenResponse = (user: any) => {
     "password",
     { expiresIn: "7d" }
   );
+
+  // const generateTokenResponse = (user: User) => {
+  //   const token = jwt.sign(
+  //     {
+  //       id: user.id,
+  //       email: user.email,
+  //       isAdmin: user.isAdmin,
+  //     },
+  //     process.env.JWT_SECRET!,
+  //     {
+  //       expiresIn: "30d",
+  //     }
+  //   );
 
   return {
     id: user.id,

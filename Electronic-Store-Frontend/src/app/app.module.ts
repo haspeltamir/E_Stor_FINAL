@@ -28,6 +28,7 @@ import { LoadingComponent } from './components/home/loading/loading.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { CheckoutPageComponent } from './components/pages/checkout-page/checkout-page.component';
 import { OrderItemListComponent } from './components/home/order-item-list/order-item-list.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,11 @@ import { OrderItemListComponent } from './components/home/order-item-list/order-
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true,
     },
   ],

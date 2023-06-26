@@ -1,5 +1,5 @@
 import { Router } from "express";
-import asyncHander from "express-async-handler";
+import asyncHandler from "express-async-handler";
 import { HTTP_BAD_REQUEST } from "../../constants/http_status";
 import { OrderStatus } from "../../constants/order_status";
 import { OrderModel } from "../models/order.model";
@@ -10,7 +10,7 @@ router.use(auth);
 
 router.post(
   "/create",
-  asyncHander(async (request: any, response: any) => {
+  asyncHandler(async (request: any, response: any) => {
     const requestOrder = request.body;
 
     if (requestOrder.items.length <= 0) {
