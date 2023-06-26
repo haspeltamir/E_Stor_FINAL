@@ -5,6 +5,7 @@ import { DevicePageComponent } from './components/pages/device-page/device-page.
 import { ShoppingCartPageComponent } from './components/pages/shopping-cart-page/shopping-cart-page.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
+import { CheckoutPageComponent } from './components/pages/checkout-page/checkout-page.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterPageComponent,
+  },
+  {
+    path: 'checkout',
+    component: CheckoutPageComponent,
   },
 ];
 
