@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 // process.env.MONGO_URI;
 
-import express, { request, response } from "express";
+import express from "express";
 import cors from "cors";
 import deviceRouter from "./routers/device.router";
 import userRouter from "./routers/user.router";
