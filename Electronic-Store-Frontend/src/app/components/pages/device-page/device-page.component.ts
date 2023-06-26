@@ -20,8 +20,8 @@ export class DevicePageComponent {
   ) {
     activatedRoute.params.subscribe((params) => {
       if (params.id)
-        devicesService.getDevicesByID(params.id).subscribe((deviceServer) => {
-          this.device = deviceServer;
+        devicesService.getDevicesByID(params.id).subscribe((serverDevice) => {
+          this.device = serverDevice;
         });
     });
   }

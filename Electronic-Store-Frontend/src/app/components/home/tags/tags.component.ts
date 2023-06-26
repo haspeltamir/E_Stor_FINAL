@@ -10,8 +10,8 @@ import { Component } from '@angular/core';
 export class TagsComponent {
   tags?: Tag[];
   constructor(devicesService: DevicesService) {
-    devicesService.getAllTags().subscribe((tagServer) => {
-      this.tags = tagServer;
+    devicesService.getAllTags().subscribe((serverTags) => {
+      this.tags = serverTags;
     });
   }
 }

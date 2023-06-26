@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { User } from '../models/User';
-import { IUserLogin } from '../interfaces/IUserLogin';
+import { User } from '../models/user';
+import { IUserLogin } from '../components/interfaces/IUserLogin';
 import { HttpClient } from '@angular/common/http';
-import { USER_LOGIN_URL } from '../constants/url';
+import { USER_LOGIN_URL, USER_REGISTER_URL } from '../constants/url';
 import { ToastrService } from 'ngx-toastr';
+import { IUserRegister } from '../components/interfaces/IUserRegister';
 
 const USER_KEY = 'User';
 @Injectable({
@@ -37,6 +38,25 @@ export class UserService {
       })
     );
   }
+
+  register(userRegister: IUserRegister): Observable<User> {
+    return this.http.post<User>(USER_REGISTER_URL, userRegister).pipe(
+      tap({
+        next: (user) => {
+          this.setUserToLocalStorage(user);
+          this.userSubject.next(user);
+          this.toastrService.success(
+            `Welcome to T&A E-Store ${user.name}`,
+            `register Successful`
+          );
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'register Failed');
+        },
+      })
+    );
+  }
+
   private setUserToLocalStorage(user: User) {
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   }

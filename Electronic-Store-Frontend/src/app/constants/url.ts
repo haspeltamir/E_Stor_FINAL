@@ -7,3 +7,4 @@ export const DEVICES_BY_TAG_URL = DEVICES_URL + '/tag/';
 export const DEVICES_BY_ID_URL = DEVICES_URL + '/';
 
 export const USER_LOGIN_URL = BASE_URL + '/api/users/login';
+export const USER_REGISTER_URL = BASE_URL + '/api/users/register';

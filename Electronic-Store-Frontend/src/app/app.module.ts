@@ -23,6 +23,7 @@ import { InputContainerComponent } from './components/login/input-container/inpu
 import { InputValidationComponent } from './components/login/input-validation/input-validation.component';
 import { TextInputComponent } from './components/login/text-input/text-input.component';
 import { DefaultButtonComponent } from './components/login/default-button/default-button.component';
+import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { DefaultButtonComponent } from './components/login/default-button/defaul
     InputValidationComponent,
     TextInputComponent,
     DefaultButtonComponent,
+    RegisterPageComponent,
   ],
   imports: [
     BrowserModule,
