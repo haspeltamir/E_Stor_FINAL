@@ -18,6 +18,10 @@ router.get(
   })
 );
 
+// router.get("/",(request, response) => {
+//     response.send(devicesList);
+//   })
+
 router.get(
   "/",
   asyncHandler(async (request, response) => {

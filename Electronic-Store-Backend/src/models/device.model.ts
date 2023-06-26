@@ -13,7 +13,6 @@ export interface device {
 
 export const DevicesSchema = new Schema<device>(
   {
-    id: { type: String, required: true },
     name: { type: String, required: true },
     price: { type: Number, required: true },
     tags: { type: [String], required: true },
