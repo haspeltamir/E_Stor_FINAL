@@ -29,6 +29,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { CheckoutPageComponent } from './components/pages/checkout-page/checkout-page.component';
 import { OrderItemListComponent } from './components/home/order-item-list/order-item-list.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     LoadingComponent,
     CheckoutPageComponent,
     OrderItemListComponent,
+    OrderTrackPageComponent,
   ],
   imports: [
     BrowserModule,
