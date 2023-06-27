@@ -1,14 +1,13 @@
 <div class="container">
   <div class="details">
     <app-title title="Register"></app-title>
-    <form [formGroup]="registerForm" (ngSubmit)="submit()">
+    <form [formGroup]="registerForm" (ngSubmit)="submit()" class="material-form">
       <app-text-input
         [control]="formControl.name"
         [showErrorsWhen]="isSubmitted"
         label="Name"
       >
-        `</app-text-input
-      >
+      </app-text-input>
 
       <app-text-input
         [control]="formControl.email"
@@ -16,8 +15,7 @@
         label="Email"
         type="email"
       >
-        `</app-text-input
-      >
+      </app-text-input>
 
       <app-text-input
         [control]="formControl.password"
@@ -25,8 +23,7 @@
         label="Password"
         type="password"
       >
-        `</app-text-input
-      >
+      </app-text-input>
 
       <app-text-input
         [control]="formControl.confirmPassword"
@@ -34,16 +31,14 @@
         label="Confirm Password"
         type="password"
       >
-        `</app-text-input
-      >
+      </app-text-input>
 
       <app-text-input
         [control]="formControl.address"
         [showErrorsWhen]="isSubmitted"
         label="Address"
       >
-        `</app-text-input
-      >
+      </app-text-input>
 
       <app-default-button text="Register"></app-default-button>
 

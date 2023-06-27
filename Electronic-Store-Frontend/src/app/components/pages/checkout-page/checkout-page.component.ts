@@ -57,13 +57,14 @@ export class CheckoutPageComponent implements OnInit {
     this.order.name = this.formControl.name.value;
     this.order.address = this.formControl.address.value;
     console.log(this.order);
-    this.orderService.create(this.order).subscribe({
-      next: () => {
-        this.router.navigateByUrl('/payment');
-      },
-      error: (errorResponse) => {
-        this.toastrService.error(errorResponse.error, 'Cart');
-      },
-    });
+    this.router.navigateByUrl('/thanks');
+    // this.orderService.create(this.order).subscribe({
+    //   next: () => {
+    //     this.router.navigateByUrl('/payment');
+    //   },
+    //   error: (errorResponse) => {
+    //     this.toastrService.error(errorResponse.error, 'Cart');
+    //   },
+    // });
   }
 }

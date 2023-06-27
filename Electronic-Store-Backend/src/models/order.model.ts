@@ -2,15 +2,7 @@ import { model, Schema, Types } from "mongoose";
 import { OrderStatus } from "../../constants/order_status";
 import { DevicesSchema, device } from "./device.model";
 
-export interface LatLng {
-  lat: string;
-  lng: string;
-}
 
-export const LatLngSchema = new Schema<LatLng>({
-  lat: { type: String, required: true },
-  lng: { type: String, required: true },
-});
 
 export interface OrderItem {
   device: device;
@@ -30,7 +22,6 @@ export interface Order {
   totalPrice: number;
   name: string;
   address: string;
-  addressLatLng: LatLng;
   paymentId: string;
   status: OrderStatus;
   user: Types.ObjectId;
@@ -42,7 +33,6 @@ const orderSchema = new Schema<Order>(
   {
     name: { type: String, required: true },
     address: { type: String, required: true },
-    addressLatLng: { type: LatLngSchema, required: true },
     paymentId: { type: String },
     totalPrice: { type: Number, required: true },
     items: { type: [OrderItemSchema], required: true },

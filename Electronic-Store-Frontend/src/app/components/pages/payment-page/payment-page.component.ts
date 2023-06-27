@@ -16,7 +16,7 @@ export class PaymentPageComponent {
           this.order = order;
         },
         error:() => {
-          router.navigateByUrl('/chekcout');
+          router.navigateByUrl('/checkout');
         }
       })
 

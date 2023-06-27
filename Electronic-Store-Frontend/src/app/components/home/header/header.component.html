@@ -1,22 +1,22 @@
 <header>
   <div class="container">
-    <a routerLink="/" class="logo">Electronic Store</a>
+    <a routerLink="/" class="logo mat-title">Electronic Store</a>
     <nav>
       <ul>
         <li *ngIf="!isAuth">
-          <a routerLink="/login">Login</a>
+          <a routerLink="/login" class="mat-button">Login</a>
         </li>
         <li *ngIf="isAuth" class="menu-container">
-          <a routerLink="/dashboard">{{ user.name }}</a>
-          <div class="menu">
-            <a routerLink="/profile">Profile</a>
-            <a routerLink="/orders">Orders</a>
-            <a (click)="logout()">Logout</a>
+          <a routerLink="/dashboard" class="mat-button">{{ user.name }}</a>
+          <div class="menu mat-menu">
+            <!-- <a routerLink="/profile" class="mat-menu-item">Profile</a>
+            <a routerLink="/orders" class="mat-menu-item">Orders</a> -->
+            <a (click)="logout()" class="mat-menu-item">Logout</a>
           </div>
         </li>
         <li>
-          <a routerLink="/shoppingCart">
-            Cart <span *ngIf="cartQuantity">{{ cartQuantity }}</span>
+          <a routerLink="/shoppingCart" class="mat-button">
+            Cart <span *ngIf="cartQuantity" class="cart-quantity">{{ cartQuantity }}</span>
           </a>
         </li>
       </ul>

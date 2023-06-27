@@ -1,0 +1,40 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  mat-card {
+    width: 30rem;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  mat-card-header {
+    display: flex;
+    align-items: flex-start; /* Align header content to the top */
+    margin-bottom: 2rem;
+  }
+  
+  mat-card-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: -3rem;
+    margin-left: -3rem;
+  }
+  
+  mat-card-content {
+    font-size: 1.6rem;
+    line-height: 1.5;
+  }
+  img {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 16rem; /* Added to push the image to the right */
+    margin-top: -2rem; /* Added to align the image to the top */
+  }
+  

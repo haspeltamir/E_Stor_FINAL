@@ -4,14 +4,20 @@
     align-items: center;
     height: 100%;
     margin-top: 3rem;
-}
-
-.details {
+  }
+  
+  .details {
     width: 25rem;
-}
-
-.login {
+  }
+  
+  .material-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+  }
+  

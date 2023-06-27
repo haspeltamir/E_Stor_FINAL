@@ -1,5 +1,6 @@
-<div class="container">
+<div class="app-input-container container">
   <button
+    class="mdc-button"
     [ngStyle]="{
       color: color,
       'background-color': bgColor,
@@ -9,6 +10,6 @@
     [type]="type"
     (click)="onClick.emit()"
   >
-    {{ text }}
+    <span class="mdc-button__label">{{ text }}</span>
   </button>
 </div>

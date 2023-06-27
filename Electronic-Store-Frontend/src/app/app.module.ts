@@ -6,7 +6,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/home/header/header.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/pages/home-page/home.component';
 import { SearchComponent } from './components/home/search/search.component';
 import { DevicePageComponent } from './components/pages/device-page/device-page.component';
@@ -16,7 +15,6 @@ import { TitleComponent } from './components/home/title/title.component';
 import { NotFoundComponent } from './components/home/not-found/not-found.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { RatingModule } from 'ng-starrating';
 import { ToastrModule } from 'ngx-toastr';
 import { timeout } from 'rxjs';
 import { InputContainerComponent } from './components/login/input-container/input-container.component';
@@ -31,7 +29,13 @@ import { OrderItemListComponent } from './components/home/order-item-list/order-
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
 import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
-
+import { StarRatingComponent } from './components/home/star-rating/star-rating.component';
+import { MatButtonModule } from '@angular/material/button';
+import { ThanksComponent } from './components/pages/thanks/thanks.component';
+import { MatCardModule } from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +58,8 @@ import { PaymentPageComponent } from './components/pages/payment-page/payment-pa
     OrderItemListComponent,
     OrderTrackPageComponent,
     PaymentPageComponent,
+    StarRatingComponent,
+    ThanksComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +73,11 @@ import { PaymentPageComponent } from './components/pages/payment-page/payment-pa
       positionClass: 'toast-bottom-right',
       newestOnTop: false,
     }),
-    // RatingModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [
     {

@@ -8,39 +8,56 @@ import auth from "../middleware/auth.mid";
 const router = Router();
 router.use(auth);
 
-router.post(
-  "/create",
-  asyncHandler(async (request: any, response: any) => {
-    const requestOrder = request.body;
+router.post('/create',
+asyncHandler(async (req:any, res:any) => {
+    const requestOrder = req.body;
 
-    if (requestOrder.items.length <= 0) {
-      response.status(HTTP_BAD_REQUEST).send("Cart Is Empty!");
-      return;
+    if(requestOrder.items.length <= 0){
+        res.status(HTTP_BAD_REQUEST).send('Cart Is Empty!');
+        return;
     }
 
     await OrderModel.deleteOne({
-      user: request.user.id,
-      status: OrderStatus.NEW,
+        user: req.user.id,
+        status: OrderStatus.NEW
     });
 
-    const newOrder = new OrderModel({ ...requestOrder, user: request.user.id });
+    const newOrder = new OrderModel({...requestOrder,user: req.user.id});
     await newOrder.save();
-    response.send(newOrder);
-  })
-);
+    res.send(newOrder);
+})
+)
+
 
 router.get('/newOrderForCurrentUser', asyncHandler( async (req:any,res ) => {
-  const order= await OrderModel.findOne({user: req.user.id, status: OrderStatus.NEW});
-  if(order) res.send(order);
-  else res.status(HTTP_BAD_REQUEST).send();
+    const order= await getNewOrderForCurrentUser(req);
+    if(order) res.send(order);
+    else res.status(HTTP_BAD_REQUEST).send();
 }))
 
-router.get(
-  "/track/:id",
-  asyncHandler(async (req, res) => {
+router.post('/pay', asyncHandler( async (req:any, res) => {
+    const {paymentId} = req.body;
+    const order = await getNewOrderForCurrentUser(req);
+    if(!order){
+        res.status(HTTP_BAD_REQUEST).send('Order Not Found!');
+        return;
+    }
+
+    order.paymentId = paymentId;
+    order.status = OrderStatus.PAYED;
+    await order.save();
+
+    res.send(order._id);
+}))
+
+router.get('/track/:id', asyncHandler( async (req, res) => {
     const order = await OrderModel.findById(req.params.id);
     res.send(order);
-  })
-);
+}))
 
 export default router;
+
+async function getNewOrderForCurrentUser(req: any) {
+    return await OrderModel.findOne({ user: req.user.id, status: OrderStatus.NEW });
+}
+

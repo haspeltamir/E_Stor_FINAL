@@ -2,24 +2,26 @@
   <div class="content">
     <app-title title="Order Form" fontSize="1.6rem"></app-title>
     <form [formGroup]="checkoutForm">
-      <app-text-input
-        [control]="formControl.name"
-        label="Name"
-      ></app-text-input>
-      <app-text-input
-        [control]="formControl.address"
-        label="Address"
-      ></app-text-input>
+      <div class="md-form-group">
+        <label class="md-label">Name</label>
+        <app-text-input
+          [control]="formControl.name"
+          class="md-input"
+        ></app-text-input>
+      </div>
+      <div class="md-form-group">
+        <label class="md-label">Address</label>
+        <app-text-input
+          [control]="formControl.address"
+          class="md-input"
+        ></app-text-input>
+      </div>
     </form>
     <app-order-item-list [order]="order"></app-order-item-list>
   </div>
-  <!-- <div class="map">
-    <app-title title="Choose Your Address On Map" fontSize="1.6rem"></app-title>
-    <map [order]="order"></map>
-  </div> -->
   <div class="buttons-container">
     <div class="buttons">
-      <button (click)="createOrder()">Go To Payment</button>
+      <button class="md-button" (click)="createOrder()">Pay</button>
     </div>
   </div>
 </div>

@@ -1,41 +1,53 @@
-<app-not-found
-  [visible]="!device"
-  notFoundMessage="Device Not Found"
-  resetLinkText="Back To Homepage"
->
-</app-not-found>
-<div *ngIf="device" class="container">
-  <img [src]="device.imageUrl" [alt]="device.name" />
+<mat-card *ngIf="!device">
+  <mat-card-content>
+    <app-not-found
+      [visible]="true"
+      notFoundMessage="Device Not Found"
+      resetLinkText="Back To Homepage"
+    ></app-not-found>
+  </mat-card-content>
+</mat-card>
 
-  <div class="details">
-    <div class="header">
-      <span class="name">
-        {{ device.name }}
-      </span>
-      <span class="favorite {{ device.favorite ? '' : 'not' }}">❤</span>
+<mat-card *ngIf="device">
+  <mat-card-content class="container">
+    <div fxLayout="row" fxLayoutGap="20px">
+      <img [src]="device.imageUrl" [alt]="device.name" class="device-image" />
     </div>
-    <div class="rating">
-      <!-- <star-rating [stars]="device.stars" [size]="1.8" /> -->
-    </div>
+      <div class="details">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <span class="name">
+            {{ device.name }}
+          </span>
+          <span class="favorite" [ngClass]="{ 'not': !device.favorite }">❤</span>
+        </div>
+        <div class="rating">
+          <app-star-rating [stars]="device.stars"></app-star-rating>
+        </div>
 
-    <div class="origins">
-      <span *ngFor="let origin of device.origins">
-        {{ origin }}
-      </span>
-    </div>
+        <div class="origins">
+          <span *ngFor="let origin of device.origins">
+            {{ origin }}
+          </span>
+        </div>
 
-    <div class="tags">
-      <a *ngFor="let tag of device.tags" routerLink="/tag/{{ tag }}">
-        {{ tag }}
-      </a>
-    </div>
+        <div class="tags">
+          <a
+            *ngFor="let tag of device.tags"
+            mat-button
+            routerLink="/tag/{{ tag }}"
+          >
+            {{ tag }}
+          </a>
+        </div>
 
-    <div class="price">
-      <span>
-        {{ device.price | currency }}
-      </span>
-    </div>
+        <div class="price">
+          <span>
+            {{ device.price | currency }}
+          </span>
+        </div>
 
-    <button (click)="addToCart()">Add To Cart</button>
-  </div>
-</div>
+        <button mat-raised-button color="primary" (click)="addToCart()">Add To Cart</button>
+      </div>
+    
+  </mat-card-content>
+</mat-card>
