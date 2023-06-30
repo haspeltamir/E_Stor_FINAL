@@ -21,3 +21,19 @@
     align-items: center;
   }
   
+  mat-error {
+    color: red;
+    font-size: 1.4rem;
+  }
+  mat-form-field {
+    width: 100%;
+  }
+  mat-label {
+    font-weight: bold;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }

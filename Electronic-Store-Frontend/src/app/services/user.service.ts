@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { User } from '../models/user';
+import { User } from '../models/User';
 import { IUserLogin } from '../components/interfaces/IUserLogin';
 import { HttpClient } from '@angular/common/http';
 import { USER_LOGIN_URL, USER_REGISTER_URL } from '../constants/url';
-import { ToastrService } from 'ngx-toastr';
 import { IUserRegister } from '../components/interfaces/IUserRegister';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 const USER_KEY = 'User';
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+  
   private userSubject = new BehaviorSubject<User>(
     this.getUserFromLocalStorage()
   );
   public userObservable: Observable<User>;
 
-  constructor(private http: HttpClient, private toastrService: ToastrService) {
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {
     this.userObservable = this.userSubject.asObservable();
   }
 
@@ -31,13 +32,13 @@ export class UserService {
         next: (user) => {
           this.setUserToLocalStorage(user);
           this.userSubject.next(user);
-          this.toastrService.success(
+          this.snackBar.open(
             `Welcome to T&A E-Store ${user.name}`,
-            `Login Successful`
+            `Login Successful`,{duration:3000}
           );
         },
         error: (errorResponse) => {
-          this.toastrService.error(errorResponse.error, 'Login Failed');
+          this.snackBar.open(errorResponse.error, 'Login Failed',{duration:3000});
         },
       })
     );
@@ -49,13 +50,13 @@ export class UserService {
         next: (user) => {
           this.setUserToLocalStorage(user);
           this.userSubject.next(user);
-          this.toastrService.success(
+          this.snackBar.open(
             `Welcome to T&A E-Store ${user.name}`,
-            `register Successful`
+            `register Successful`,{duration:3000}
           );
         },
         error: (errorResponse) => {
-          this.toastrService.error(errorResponse.error, 'register Failed');
+          this.snackBar.open(errorResponse.error, 'register Failed',{duration:3000});
         },
       })
     );

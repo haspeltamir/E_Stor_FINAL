@@ -8,22 +8,31 @@
         <form [formGroup]="loginForm" (ngSubmit)="submit()">
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput formControlName="email" type="email">
-            <mat-error *ngIf="isSubmitted && formControl.email.errors">{{ formControl.email.errors }}</mat-error>
+            <input matInput formControlName="email" type="email" />
+            <mat-error *ngIf="isSubmitted && formControl.email.errors">{{
+              formControl.email.errors
+            }}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput formControlName="password" type="password">
-            <mat-error *ngIf="isSubmitted && formControl.password.errors">{{ formControl.password.errors}}</mat-error>
+            <input matInput formControlName="password" type="password" />
+            <mat-error *ngIf="isSubmitted && formControl.password.errors">{{
+              formControl.password.errors
+            }}</mat-error>
           </mat-form-field>
 
           <button mat-raised-button color="primary">Login</button>
         </form>
 
         <div class="register">
-          New user? &nbsp;
-          <a mat-button routerLink="/register" [queryParams]="{ returnUrl: returnUrl }">Register here</a>
+          <mat-label>New user?</mat-label>
+          <a
+            mat-button
+            routerLink="/register"
+            [queryParams]="{ returnUrl: returnUrl }"
+            >Register here</a
+          >
         </div>
       </mat-card-content>
     </mat-card>

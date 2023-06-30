@@ -18,9 +18,6 @@ router.get(
   })
 );
 
-// router.get("/",(request, response) => {
-//     response.send(devicesList);
-//   })
 
 router.get(
   "/",
@@ -80,12 +77,6 @@ router.get(
   })
 );
 
-//Get Devices by ID
-// deviceRouter.get("/:deviceID", (request, response) => {
-//   const deviceID = request.params.deviceID;
-//   const device = devicesList.find((device) => device.id === deviceID);
-//   response.send(device);
-// });
 
 router.get(
   "/:deviceID",

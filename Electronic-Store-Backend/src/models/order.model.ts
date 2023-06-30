@@ -5,39 +5,37 @@ import { DevicesSchema, device } from "./device.model";
 
 
 export interface OrderItem {
-  device: device;
   price: number;
   quantity: number;
 }
 
 export const OrderItemSchema = new Schema<OrderItem>({
-  device: { type: DevicesSchema, required: true },
-  price: { type: Number, required: true },
-  quantity: { type: Number, required: true },
+  price: { type: Number },
+  quantity: { type: Number },
 });
 
 export interface Order {
-  id: string;
+  id: number;
   items: OrderItem[];
   totalPrice: number;
   name: string;
   address: string;
   paymentId: string;
-  status: OrderStatus;
-  user: Types.ObjectId;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  status: string;
 }
+
 
 const orderSchema = new Schema<Order>(
   {
-    name: { type: String, required: true },
-    address: { type: String, required: true },
-    paymentId: { type: String },
-    totalPrice: { type: Number, required: true },
-    items: { type: [OrderItemSchema], required: true },
-    status: { type: String, default: OrderStatus.NEW },
-    user: { type: Schema.Types.ObjectId, required: true },
+    id: { type: Number},
+    items: { type: [OrderItemSchema] },
+    totalPrice: { type: Number },
+    name: { type: String },
+    address: { type: String },
+    paymentId: { type: String},
+    createdAt: { type: String },
+    status: { type: String },
   },
   {
     timestamps: true,

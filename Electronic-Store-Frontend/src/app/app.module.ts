@@ -15,8 +15,6 @@ import { TitleComponent } from './components/home/title/title.component';
 import { NotFoundComponent } from './components/home/not-found/not-found.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
-import { timeout } from 'rxjs';
 import { InputContainerComponent } from './components/login/input-container/input-container.component';
 import { InputValidationComponent } from './components/login/input-validation/input-validation.component';
 import { TextInputComponent } from './components/login/text-input/text-input.component';
@@ -36,6 +34,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,16 +67,12 @@ import { MatInputModule } from '@angular/material/input';
     MatSlideToggleModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-bottom-right',
-      newestOnTop: false,
-    }),
     MatButtonModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSnackBarModule
   ],
   providers: [
     {

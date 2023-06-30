@@ -2,29 +2,31 @@ import { Router } from "express";
 import asyncHandler from "express-async-handler";
 import { HTTP_BAD_REQUEST } from "../../constants/http_status";
 import { OrderStatus } from "../../constants/order_status";
-import { OrderModel } from "../models/order.model";
-import auth from "../middleware/auth.mid";
+import { Order,OrderModel } from "../models/order.model";
 
 const router = Router();
-router.use(auth);
+
 
 router.post('/create',
 asyncHandler(async (req:any, res:any) => {
     const requestOrder = req.body;
-
+    console.log(requestOrder)
     if(requestOrder.items.length <= 0){
         res.status(HTTP_BAD_REQUEST).send('Cart Is Empty!');
         return;
-    }
-
-    await OrderModel.deleteOne({
-        user: req.user.id,
-        status: OrderStatus.NEW
-    });
-
-    const newOrder = new OrderModel({...requestOrder,user: req.user.id});
-    await newOrder.save();
-    res.send(newOrder);
+    }   
+    const newOrder: Order = {
+        id: req.body.id,
+        items: req.body.items,
+        totalPrice: req.body.totalPrice,
+        name: req.body.name,
+        address: req.body.address,
+        paymentId: req.body.paymentId,
+        status: req.body.status,
+        createdAt: ""
+    };
+    const dbOrder = await OrderModel.create(newOrder);
+    res.send(dbOrder);
 })
 )
 
