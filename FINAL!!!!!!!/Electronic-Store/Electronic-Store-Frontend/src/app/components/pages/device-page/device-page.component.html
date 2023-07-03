@@ -1,0 +1,53 @@
+<mat-card *ngIf="!device">
+  <mat-card-content>
+    <app-not-found
+      [visible]="true"
+      notFoundMessage="Device Not Found"
+      resetLinkText="Back To Homepage"
+    ></app-not-found>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="device">
+  <mat-card-content class="container">
+    <div fxLayout="row" fxLayoutGap="20px">
+      <img [src]="device.imageUrl" [alt]="device.name" class="device-image" />
+    </div>
+      <div class="details">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <span class="name">
+            {{ device.name }}
+          </span>
+          <span class="favorite" [ngClass]="{ 'not': !device.favorite }">❤</span>
+        </div>
+        <div class="rating">
+          <app-star-rating [stars]="device.stars"></app-star-rating>
+        </div>
+
+        <div class="origins">
+          <span *ngFor="let origin of device.origins">
+            {{ origin }}
+          </span>
+        </div>
+
+        <div class="tags">
+          <a
+            *ngFor="let tag of device.tags"
+            mat-button
+            routerLink="/tag/{{ tag }}"
+          >
+            {{ tag }}
+          </a>
+        </div>
+
+        <div class="price">
+          <span>
+            {{ device.price | currency }}
+          </span>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="addToCart()">Add To Cart</button>
+      </div>
+    
+  </mat-card-content>
+</mat-card>

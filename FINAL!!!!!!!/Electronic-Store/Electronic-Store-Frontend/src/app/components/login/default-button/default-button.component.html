@@ -1,0 +1,15 @@
+<div class="app-input-container container">
+  <button
+    class="mdc-button"
+    [ngStyle]="{
+      color: color,
+      'background-color': bgColor,
+      'font-size.rem': fontSizeRem,
+      'width.rem': widthRem
+    }"
+    [type]="type"
+    (click)="onClick.emit()"
+  >
+    <span class="mdc-button__label">{{ text }}</span>
+  </button>
+</div>
